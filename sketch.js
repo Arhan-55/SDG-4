@@ -18,6 +18,7 @@ var Level_1 = 1;
 var Level_2 = 2;
 var Level_3 = 3;
 var Level_4 = 4;
+
 var gameState = Level_1;
 
 function preload(){
@@ -39,10 +40,14 @@ function preload(){
     bg4 = loadImage("images/bg(4).png");
 
     villianGroup1 = loadImage("images/villian_group(1).png");
+    villianGroup2 = loadImage("images/villian_group(2).png");
+    villianGroup3 = loadImage("images/villian_group(3).png");
 
     Instructions = loadImage("images/Instructions.png");
     level1 = loadImage("images/LEVEL(1).png");
     level2 = loadImage("images/LEVEL(2).png");
+    level3 = loadImage("images/LEVEL(3).png");
+    //level4 = loadImage("images/LEVEL(4).png");
 
     fight_smoke_Img = loadImage("images/fight_smoke.png");
 
@@ -86,6 +91,9 @@ function setup(){
 
     edge2 = createSprite(12033,Joker.y-250,10,880);
     edge2.visible = false;
+    
+    edge3 = createSprite(12033,Joker.y-250,10,880);
+    edge3.visible = false;
 
     if(gameState === Level_1){
         level_1 = createSprite(displayWidth/2,displayHeight/2);
@@ -118,34 +126,70 @@ function setup(){
         young_boys4.scale = 0.6;
         young_boys4.collide(ground);
     }
-
-    if(gameState === Level_2){
-        bad_man = createSprite(2683,displayHeight/2+250);
-        bad_man.addImage(villianGroup1);
-        bad_man.scale = 0.6;
-        bad_man.collide(ground);
-
-        bad_man2 = createSprite(4683,displayHeight/2+250);
-        bad_man2.addImage(villianGroup1);
-        bad_man2.scale = 0.6;
-        bad_man2.collide(ground);
-
-        bad_man3 = createSprite(6683,displayHeight/2+250);
-        bad_man3.addImage(villianGroup1);
-        bad_man3.scale = 0.6;
-        bad_man3.collide(ground);
-
-        bad_man4 = createSprite(8683,displayHeight/2+250);
-        bad_man4.addImage(villianGroup1);
-        bad_man4.scale = 0.6;
-        bad_man4.collide(ground);
-
         
-   }
+    level_2 = createSprite(displayWidth/2,displayHeight/2);
+    level_2.addImage(level2);
+    level_2.scale = 0.1;
+    level_2.visible = false;
+
+    bad_man = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_man.addImage(villianGroup2);
+    bad_man.collide(ground);
+    bad_man.scale = 1.5;
+    bad_man.visible = false;
+
+    bad_man2 = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_man2.addImage(villianGroup2);
+    bad_man2.collide(ground);
+    bad_man2.scale = 1.5;
+    bad_man2.visible = false;
+
+    bad_man3 = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_man3.addImage(villianGroup2);
+    bad_man3.collide(ground);
+    bad_man3.scale = 1.5;
+    bad_man3.visible = false;
+
+    bad_man4 = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_man4.addImage(villianGroup2);
+    bad_man4.collide(ground);
+    bad_man4.scale = 1.5;
+    bad_man4.visible = false;
+
+    level_3 = createSprite(displayWidth/2,displayHeight/2);
+    level_3.addImage(level3);
+    level_3.scale = 0.1;
+    level_3.visible = false;
+
+    bad_employee = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_employee.addImage(villianGroup3);
+    bad_employee.collide(ground);
+    bad_employee.scale = 1.5;
+    bad_employee.visible = false;
+
+    bad_employee2 = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_employee2.addImage(villianGroup3);
+    bad_employee2.collide(ground);
+    bad_employee2.scale = 1.5;
+    bad_employee2.visible = false;
+
+    bad_employee3 = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_employee3.addImage(villianGroup3);
+    bad_employee3.collide(ground);
+    bad_employee3.scale = 1.5;
+    bad_employee3.visible = false;
+
+    bad_employee4 = createSprite(edge2.x + 1000,displayHeight/2+250);
+    bad_employee4.addImage(villianGroup3);
+    bad_employee4.collide(ground);
+    bad_employee4.scale = 1.5;
+    bad_employee4.visible = false;
+    
 }
 
 function draw(){
-    
+    background(bg1);
+
     if(characterState === normal){
         NormalManControls();
     }
@@ -155,7 +199,7 @@ function draw(){
     }
 
     if(gameState === Level_1){
-        background(bg1);
+    if(characterState === normal){
         if(Joker.isTouching(young_boys)){
          smoke = createSprite(Joker.x,Joker.y);
          smoke.addImage(fight_smoke_Img);
@@ -192,81 +236,168 @@ function draw(){
            young_boys4.velocityX = -5;
            bully_meter += 0.1;
      }
+    }
 
         if(Joker.isTouching(edge2)){
             gameState = Level_2;
         }
-    }
+        if(gameState === Level_2){
 
-    if(gameState === Level_2){
-        background(bg2);
-
-        level_2 = createSprite(displayWidth/2,displayHeight/2);
-        level_2.addImage(level2);
-        level_2.scale = 0.1;
-        level_2.lifetime = 400;
-
-       
-
-        Joker.x = displayWidth/2-700;
-        Joker.y = displayHeight-150;
-
-        if(characterState === normal){
-            NormalManControls();
+            level_2.visible = true;
+    
+            bad_man.visible = true;
+            bad_man2.visible = true;
+            bad_man3.visible = true;
+            bad_man4.visible = true;
+    
+            bad_man.x = 2683;
+            bad_man2.x = 4683;
+            bad_man3.x = 6683;
+            bad_man4.x = 8683;
+    
+            level_2.lifetime = 400;
+    
+            Joker.x = displayWidth/2-700;
+            Joker.y = displayHeight-150;
+    
+            young_boys.destroy();
+            young_boys2.destroy();
+            young_boys3.destroy();
+            young_boys4.destroy();
+    
+            if(Joker.isTouching(edge3)){
+                gameState = Level_3;
+            }
         }
     
-        if(characterState === joker){
-            JokerControls();
-        }  
-        if(Joker.isTouching(bad_man)){
+        if(gameState === Level_3){
+    
+            level_3.visible = true;
+    
+            bad_employee.visible = true;
+            bad_employee2.visible = true;
+            bad_employee3.visible = true;
+            bad_employee4.visible = true;
+    
+            bad_employee.x = 2683;
+            bad_employee2.x = 4683;
+            bad_employee3.x = 6683;
+            bad_employee4.x = 8683;
+    
+            level_3.lifetime = 400;
+    
+            Joker.x = displayWidth/2-700;
+            Joker.y = displayHeight-150;
+    
+            bad_man.destroy();
+            bad_man2.destroy();
+            bad_man3.destroy();
+            bad_man4.destroy();
+        }
+    
+    }
+
+    if(characterState === normal){
+       if(Joker.isTouching(bad_man)){
+        smoke = createSprite(Joker.x,Joker.y);
+        smoke.addImage(fight_smoke_Img);
+        smoke.scale = 0.5;
+        smoke.lifetime = 5;
+
+        bully_meter += 0.1;
+     }
+       if(Joker.isTouching(bad_man2)){
+         smoke = createSprite(Joker.x,Joker.y);
+         smoke.addImage(fight_smoke_Img);
+         smoke.scale = 0.5;
+         smoke.lifetime = 5;
+         
+         bully_meter += 0.1;
+    }
+       if(Joker.isTouching(bad_man3)){
+          smoke = createSprite(Joker.x,Joker.y);
+          smoke.addImage(fight_smoke_Img);
+          smoke.scale = 0.5;
+          smoke.lifetime = 5;
+
+          bully_meter += 0.1;
+    }
+       if(Joker.isTouching(bad_man4)){
+          smoke = createSprite(Joker.x,Joker.y);
+          smoke.addImage(fight_smoke_Img);
+          smoke.scale = 0.5;
+          smoke.lifetime = 5;
+
+          bully_meter += 0.1;
+       }
+         if(Joker.isTouching(bad_employee)){
             smoke = createSprite(Joker.x,Joker.y);
             smoke.addImage(fight_smoke_Img);
             smoke.scale = 0.5;
             smoke.lifetime = 5;
-   
-            bad_man.velocityX = -5;
+    
             bully_meter += 0.1;
          }
-           if(Joker.isTouching(bad_man2)){
+           if(Joker.isTouching(bad_employee2)){
              smoke = createSprite(Joker.x,Joker.y);
              smoke.addImage(fight_smoke_Img);
              smoke.scale = 0.5;
              smoke.lifetime = 5;
              
-             bad_man2.velocityX = -5;
              bully_meter += 0.1;
         }
-           if(Joker.isTouching(bad_man3)){
+           if(Joker.isTouching(bad_employee3)){
               smoke = createSprite(Joker.x,Joker.y);
               smoke.addImage(fight_smoke_Img);
               smoke.scale = 0.5;
               smoke.lifetime = 5;
-   
-              bad_man3.velocityX = -5;
+    
               bully_meter += 0.1;
         }
-           if(Joker.isTouching(bad_man4)){
+           if(Joker.isTouching(bad_employee4)){
               smoke = createSprite(Joker.x,Joker.y);
               smoke.addImage(fight_smoke_Img);
               smoke.scale = 0.5;
               smoke.lifetime = 5;
-   
-              bad_man4.velocityX = -5;
+    
               bully_meter += 0.1;
         }
-   
-           if(Joker.isTouching(edge2)){
-               gameState = Level_3;
-           }
-        
-           young_boys.destroy();
-           young_boys2.destroy();
-           young_boys3.destroy();
-           young_boys4.destroy();
-        
-          
-
 }
+if(characterState === normal){
+   if(Joker.isTouching(bad_man)){
+    smoke = createSprite(Joker.x,Joker.y);
+    smoke.addImage(fight_smoke_Img);
+    smoke.scale = 0.5;
+    smoke.lifetime = 5;
+
+    bully_meter += 0.1;
+ }
+   if(Joker.isTouching(bad_man2)){
+     smoke = createSprite(Joker.x,Joker.y);
+     smoke.addImage(fight_smoke_Img);
+     smoke.scale = 0.5;
+     smoke.lifetime = 5;
+     
+     bully_meter += 0.1;
+}
+   if(Joker.isTouching(bad_man3)){
+      smoke = createSprite(Joker.x,Joker.y);
+      smoke.addImage(fight_smoke_Img);
+      smoke.scale = 0.5;
+      smoke.lifetime = 5;
+
+      bully_meter += 0.1;
+}
+   if(Joker.isTouching(bad_man4)){
+      smoke = createSprite(Joker.x,Joker.y);
+      smoke.addImage(fight_smoke_Img);
+      smoke.scale = 0.5;
+      smoke.lifetime = 5;
+
+      bully_meter += 0.1;
+}
+
+  }
 
     bully_meter_sprite.x = Joker.x + 1000; 
 
@@ -410,5 +541,8 @@ function Bully_Meter(){
     }
     if(bully_meter >= 18){
         bully_meter_sprite.addImage(bully_meter_10);
+    }
+    if(bully_meter >= 20){
+        characterState = joker;
     }
 }
